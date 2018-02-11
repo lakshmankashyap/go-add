@@ -5,6 +5,7 @@ import (
   "io/ioutil"
   "os"
   "encoding/json"
+  "flag"
 )
 
 // Declare a Point type.
@@ -25,6 +26,10 @@ func main() {
 
   // Declare a var to hold the decoded JSON.
   var point = Point{}
+
+  var verbose = flag.Bool("v", false, "Print verbose expression")  
+
+  flag.Parse()
   
   //   ██████╗ ███████╗████████╗    ██╗███╗   ██╗██████╗ ██╗   ██╗████████╗
   //  ██╔════╝ ██╔════╝╚══██╔══╝    ██║████╗  ██║██╔══██╗██║   ██║╚══██╔══╝
@@ -36,7 +41,7 @@ func main() {
 
   if len(os.Args) > 1 {
     // If a filename was provided, attempt to read from that file.
-    if content, err := ioutil.ReadFile(os.Args[1]); err == nil {
+    if content, err := ioutil.ReadFile(os.Args[len(os.Args)-1]); err == nil {
       // If successful, assign content to "input".
       input = string(content)
     } else {
@@ -90,6 +95,10 @@ func main() {
     return
   }
 
-  fmt.Printf("%v", point.X + point.Y);
+  if *verbose == true {
+    fmt.Printf("%v + %v = %v", point.X, point.Y, point.X + point.Y);  
+  } else {
+    fmt.Printf("%v", point.X + point.Y);
+  }
 
 }
