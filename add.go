@@ -27,8 +27,10 @@ func main() {
   // Declare a var to hold the decoded JSON.
   var point = Point{}
 
+  // Declare a "verbose" flag to be set by the -v flag.
   var verbose = flag.Bool("v", false, "Print verbose expression")  
 
+  // Parse all command line flags.
   flag.Parse()
   
   //   ██████╗ ███████╗████████╗    ██╗███╗   ██╗██████╗ ██╗   ██╗████████╗
@@ -96,8 +98,10 @@ func main() {
   }
 
   if *verbose == true {
+    // If verbose mode is true, output the whole expression.
     fmt.Printf("%v + %v = %v", point.X, point.Y, point.X + point.Y);  
   } else {
+    // Otherwise output the result only.
     fmt.Printf("%v", point.X + point.Y);
   }
 
