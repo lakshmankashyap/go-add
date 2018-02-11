@@ -32,7 +32,9 @@ func main() {
 
   // Parse all command line flags.
   flag.Parse()
-  
+
+  // Get all non-flag command-line args.
+  var cmdLineArgs = flag.Args()
   //   ██████╗ ███████╗████████╗    ██╗███╗   ██╗██████╗ ██╗   ██╗████████╗
   //  ██╔════╝ ██╔════╝╚══██╔══╝    ██║████╗  ██║██╔══██╗██║   ██║╚══██╔══╝
   //  ██║  ███╗█████╗     ██║       ██║██╔██╗ ██║██████╔╝██║   ██║   ██║   
@@ -41,15 +43,15 @@ func main() {
   //   ╚═════╝ ╚══════╝   ╚═╝       ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝    ╚═╝   
   //                                                                       
 
-  if len(os.Args) > 1 {
+  if len(cmdLineArgs) > 0 {
     // If a filename was provided, attempt to read from that file.
-    if content, err := ioutil.ReadFile(os.Args[len(os.Args)-1]); err == nil {
+    if content, err := ioutil.ReadFile(cmdLineArgs[0]); err == nil {
       // If successful, assign content to "input".
       input = string(content)
     } else {
       // Otherwise, if the file couldn't be found, say so.
       if (os.IsNotExist(err)) {
-        gracefulExit(fmt.Sprintf("Sorry, could not find the file `%v`.\n", os.Args[1]))
+        gracefulExit(fmt.Sprintf("Sorry, could not find the file `%v`.\n", cmdLineArgs[0]))
       }
       // If an unknown error occurred, bail out as gracefully as possible.
       gracefulExit(fmt.Sprintf("Sorry, an error occurred reading the input file:\n\n%v.\n", err))
