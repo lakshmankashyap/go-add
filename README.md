@@ -1,7 +1,7 @@
 # Add.go
 Given a JSON dictionary containing `x` and `y`, outputs the sum of x and y.
 
-Extra keys in the dictionary will be ignored.
+Extra keys in the dictionary will be ignored.  Missing keys will default to zero.
 
 ## Usage
 ```
