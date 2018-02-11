@@ -28,13 +28,17 @@ func main() {
   var point = Point{}
 
   // Declare a "verbose" flag to be set by the -v flag.
-  var verbose = flag.Bool("v", false, "Print verbose expression")  
+  var verbose bool
+
+  flag.BoolVar(&verbose, "v", false, "Print verbose expression")  
+  flag.BoolVar(&verbose, "verbose", false, "Print verbose expression")  
 
   // Parse all command line flags.
   flag.Parse()
 
   // Get all non-flag command-line args.
   var cmdLineArgs = flag.Args()
+
   //   ██████╗ ███████╗████████╗    ██╗███╗   ██╗██████╗ ██╗   ██╗████████╗
   //  ██╔════╝ ██╔════╝╚══██╔══╝    ██║████╗  ██║██╔══██╗██║   ██║╚══██╔══╝
   //  ██║  ███╗█████╗     ██║       ██║██╔██╗ ██║██████╔╝██║   ██║   ██║   
@@ -100,7 +104,7 @@ Please ensure input is a JSON string representing an object with 'x' and 'y' key
 For the record, your input was %v`, input))
   }
 
-  if *verbose == true {
+  if verbose == true {
     // If verbose mode is true, output the whole expression.
     fmt.Printf("%v + %v = %v", point.X, point.Y, point.X + point.Y);  
   } else {
