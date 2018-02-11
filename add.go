@@ -77,7 +77,7 @@ func main() {
           return
         }
       } else {
-        gracefulExit("Usage: calc <input filename>")
+        gracefulExit("Usage: calc [-v] <input filename>")
       }
     } else {
       // If an unknown error occurred, bail out as gracefully as possible.
